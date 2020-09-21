@@ -17,4 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/about', 'AboutController@show');
+Route::get('about', 'AboutController@show')->name('about');
+Route::get('posts', 'BlogItemController@index')->name('posts');
+Route::get('posts/create', 'BlogItemController@create')->name('posts.create');
+Route::post('posts/store', 'BlogItemController@store')->name('posts.store');
+Route::get('posts/{id}', 'BlogItemController@show')->name('posts.show');
