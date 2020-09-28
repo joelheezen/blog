@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('content')
     <header class="jumbotron">
@@ -21,6 +21,13 @@
                 <input type="text" class="form-control" id="description" name="description"/>
                 @if ($errors->has('description'))
                     <span class="alert-danger form-check-inline">{{$errors->first('description')}}</span>
+                @endif
+            </div>
+            <div class="form-group">
+                <label for="fulltext">volledige tekst:</label>
+                <textarea class="form-control" id="fulltext" name="fulltext"></textarea>
+                @if ($errors->has('fulltext'))
+                    <span class="alert-danger form-check-inline">{{$errors->first('fulltext')}}</span>
                 @endif
             </div>
             <div class="form-group">

@@ -46,6 +46,7 @@ class BlogItemController extends Controller
         $blogItem->title = $request->get('title');
         $blogItem->description = $request->get('description');
         $blogItem->image = $request->get('image');
+        $blogItem->fulltext = $request->get('fulltext');
 
         $blogItem->save();
         return redirect('posts')->with('success', 'Blogpost is opgeslagen!');

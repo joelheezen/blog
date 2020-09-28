@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('content')
     <header class="jumbotron">
@@ -15,6 +15,7 @@
             <article>
                 <p>{{$blogItem['description']}}</p>
                 <img src="{{$blogItem['image']}}" alt="{{$blogItem['title']}}"/>
+                <p>{{$blogItem['fulltext']}}</p>
             </article>
         @endif
     </div>
