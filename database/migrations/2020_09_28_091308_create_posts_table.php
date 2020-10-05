@@ -20,6 +20,7 @@ class CreatePostsTable extends Migration
             $table->Text("fulltext");
             $table->text("description");
             $table->string("image");
+            $table->foreignId('category_id')->references('id')->on('categories');
         });
     }
 

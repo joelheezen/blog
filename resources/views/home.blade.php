@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+                <div class="card-header">Home</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -13,8 +13,11 @@
                             {{ session('status') }}
                         </div>
                     @endif
+                    <div class="middle-text">
+                        This website is meant to be a portfolio for myself, I am Joel Heezen a student CMGT(Creative Media and Game Technologies) at Hogeschool Rotterdam. <br><br>
 
-                    {{ __('You are logged in!') }}
+                        The purpose of this site is to show off my projects, and for people to give feedback.
+                    </div>
                 </div>
             </div>
         </div>

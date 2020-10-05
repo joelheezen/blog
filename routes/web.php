@@ -18,6 +18,7 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('about', 'AboutController@show')->name('about');
+Route::get('profile', 'ProfileController@index')->name('profile');
 
 Route::prefix('posts')->group(function(){
     Route::get('', 'BlogItemController@index')->name('posts');
@@ -33,10 +34,3 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

@@ -25,6 +25,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|BlogItem whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|BlogItem whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property int $category_id
+ * @method static \Illuminate\Database\Eloquent\Builder|BlogItem whereCategoryId($value)
  */
 class BlogItem extends Model
 {
