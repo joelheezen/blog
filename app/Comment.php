@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $headline
  * @property string $comment
  * @property int $users_id
- * @property int $blog-items_id
+ * @property int $blogItems_id
  * @method static \Illuminate\Database\Eloquent\Builder|Comment newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Comment newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Comment query()
@@ -29,4 +29,8 @@ use Illuminate\Database\Eloquent\Model;
 class Comment extends Model
 {
     //
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'users_id');
+    }
 }

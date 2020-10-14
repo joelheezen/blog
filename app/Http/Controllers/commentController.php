@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class BlogItemController extends Controller
+class commentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,10 +13,7 @@ class BlogItemController extends Controller
      */
     public function index()
     {
-        $blogItems = \App\BlogItem::all();
-        return view('blog-items.index', [
-            'blogItems' => $blogItems
-        ]);
+        //
     }
 
     /**
@@ -26,7 +23,7 @@ class BlogItemController extends Controller
      */
     public function create()
     {
-        return view('blog-items.create');
+        //
     }
 
     /**
@@ -38,21 +35,18 @@ class BlogItemController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required',
-            'description' => 'required',
-            'fulltext' => 'required',
-            'category_id' => 'required',
+            'comment' => 'required',
+            'headline' => 'required',
         ]);
 
-        $blogItem = new \App\BlogItem();
-        $blogItem->title = $request->get('title');
-        $blogItem->description = $request->get('description');
-        $blogItem->image = $request->get('image');
-        $blogItem->fulltext = $request->get('fulltext');
-        $blogItem->category_id = $request->get('category_id');
+        $comment = new \App\Comment();
+        $comment->headline = $request->get('headline');
+        $comment->comment = $request->get('comment');
+        $comment->users_id = $request->get('users_id');
+        $comment->blogItems_id = $request->get('blogItems_id');
 
-        $blogItem->save();
-        return redirect('posts')->with('success', 'Blogpost is opgeslagen!');
+        $comment->save();
+        return redirect()->back()->with('success', 'comment is opgeslagen!');
     }
 
     /**
@@ -63,19 +57,7 @@ class BlogItemController extends Controller
      */
     public function show($id)
     {
-        try {
-            $blogItem = \App\BlogItem::find($id);
-            $error = null;
-        } catch (\Exception $e) {
-            $blogItem = null;
-            $error = $e->getMessage();
-        }
-
-
-        return view('blog-items.show', [
-            'blogItem' => $blogItem,
-            'error' =>$error,
-        ]);
+        //
     }
 
     /**

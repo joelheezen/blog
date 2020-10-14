@@ -1,6 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
+    @if(Auth::user()->admin === 0)Je hebt geen toestemming om een blogpost aan te maken.{{exit}} @endif
     <header class="jumbotron">
         <h1 class="modal-title float-left">Voeg een nieuwe post toe</h1>
         <a class="nav-link float-right" href="{{route('posts')}}">Terug naar blogposts</a>
@@ -28,6 +29,13 @@
                 <textarea class="form-control" id="fulltext" name="fulltext"></textarea>
                 @if ($errors->has('fulltext'))
                     <span class="alert-danger form-check-inline">{{$errors->first('fulltext')}}</span>
+                @endif
+            </div>
+            <div class="form-group">
+                <label for="category_id">categorie:</label>
+                <input type="number" class="category_id" id="category_id" name="category_id">
+                @if ($errors->has('category_id'))
+                    <span class="alert-danger form-check-inline">{{$errors->first('category_id')}}</span>
                 @endif
             </div>
             <div class="form-group">

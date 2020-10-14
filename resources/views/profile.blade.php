@@ -3,23 +3,30 @@
 @section('content')
     <header class ="jumbotron">
         <h1 class ="modal-title float-left">Profile</h1>
+        <script type="text/javascript">
+            let loc = "{{route('profile.update', auth::user()->id)}}";
+            let token = "{{ csrf_token() }}";
+        </script>
     </header>
-
+    @if(Auth::user())
     <div class="hello">Hello {{Auth::user()->name}}<br>
         Welcome to your profile, here you can see your comment history as well as your details.
     </div>
-
+    @endif
     <div class="profile-details">
         <label for="email">Email:</label> {{Auth::user()->email}}<br>
         <label for="creation-date">Joined on:</label> {{Auth::user()->created_at}}<br>
-        <label for="update-date">Latest account update on:</label> {{Auth::user()->updated_at}}
+        <label for="update-date">Latest account update on:</label> {{Auth::user()->updated_at}}<br>
+        <label for="update">Edit your account </label><button class="edit-account" onclick="editAccount()">click here to update</button>
     </div>
 
+@if($comments)
     <div class="comment-history">
         @foreach($comments as $comment)
-            <div class="comment-in-history">{{$comment['headline']}} {{$comment['comment']}}</div>
+            <br><div class="comment-in-history">{{$comment['headline']}} {{$comment['comment']}}</div>
         @endforeach
     </div>
+@endif
 
     <div class="container">
         @if ($message = Session::get('success'))

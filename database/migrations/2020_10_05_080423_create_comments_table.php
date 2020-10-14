@@ -19,7 +19,7 @@ class CreateCommentsTable extends Migration
             $table->text('headline');
             $table->text('comment');
             $table->foreignId('users_id')->references('id')->on('users');
-            $table->foreignId('blog-items_id')->references('id')->on('blog_items');
+            $table->foreignId('blogItems_id')->references('id')->on('blog_items');
         });
     }
 

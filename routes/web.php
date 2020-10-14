@@ -18,7 +18,7 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('about', 'AboutController@show')->name('about');
-Route::get('profile', 'ProfileController@index')->name('profile');
+Route::get('profile', 'ProfileController@index')->name('profile')->middleware('auth');
 
 Route::prefix('posts')->group(function(){
     Route::get('', 'BlogItemController@index')->name('posts');
@@ -30,6 +30,9 @@ Route::prefix('posts')->group(function(){
     });
 });
 
+Route::post('comment.store', 'commentController@store')->name('comment.store')->middleware('auth');
+Route::post('profile.update.{id}', 'ProfileController@update')->name('profile.update')->middleware('auth');
+Route::post('profile.store', 'ProfileController@store')->name('profile.store')->middleware('auth');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

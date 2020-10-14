@@ -31,4 +31,8 @@ use Illuminate\Database\Eloquent\Model;
 class BlogItem extends Model
 {
     //
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'blogItems_id');
+    }
 }

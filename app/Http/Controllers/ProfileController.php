@@ -15,7 +15,7 @@ class ProfileController extends Controller
     public function index()
     {
         $userId = Auth::user()->id;
-        $comments = \App\Comment::all()->where('id', $userId);
+        $comments = \App\Comment::all()->where('users_id', $userId);
         return view('profile', [
             'comments' => $comments
         ]);
@@ -73,7 +73,19 @@ class ProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+        ]);
+
+
+        $user = \App\User::find($id);
+        $user->name = $request->get('name');
+        $user->email = $request->get('email');
+
+
+        $user->save();
+        return redirect()->back()->with('success', 'update is opgeslagen!');
     }
 
     /**
