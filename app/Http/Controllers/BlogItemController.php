@@ -86,7 +86,20 @@ class BlogItemController extends Controller
      */
     public function edit($id)
     {
-        //
+        try {
+            $blogItem = \App\BlogItem::find($id);
+            $error = null;
+        } catch (\Exception $e) {
+            $blogItem = null;
+            $error = $e->getMessage();
+        }
+
+
+        return view('blog-items.edit', [
+            'blogItem' => $blogItem,
+            'error' =>$error,
+            'id' =>$id,
+        ]);
     }
 
     /**
@@ -99,16 +112,69 @@ class BlogItemController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'fulltext' => 'required',
+            'category_id' => 'required',
+            'image' => 'required',
+        ]);
+
+        $post = \App\BlogItem::find($id);
+        $post->title = $request->get('title');
+        $post->description = $request->get('description');
+        $post->fulltext = $request->get('fulltext');
+        $post->category_id = $request->get('category_id');
+        $post->image = $request->get('image');
+
+        $post->save();
+        return redirect('posts')->with('success', 'Post has been edited!');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function destroy($id)
     {
-        //
+        $post =\App\BlogItem::find($id);
+        $post->delete();
+
+        return redirect('posts')->with('success', 'Post has been deleted!');
+    }
+
+    /**
+     * Update the specified resource in storage to show it.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function unhide(Request $request, $id)
+    {
+        $post = \App\BlogItem::find($id);
+        $post->hidden = 0;
+
+        $post->save();
+        return redirect('posts')->with('success', 'Post has been put back in the list!');
+    }
+
+    /**
+     * Update the specified resource in storage to hide it.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function hide(Request $request, $id)
+    {
+        $post = \App\BlogItem::find($id);
+        $post->hidden = 1;
+
+        $post->save();
+        return redirect('posts')->with('success', 'Post has been hidden!');
     }
 }

@@ -2,7 +2,6 @@ function editAccount(){
     let area = document.getElementsByClassName('profile-details');
     let popup = document.createElement('div');
     area[0].appendChild(popup);
-    popup.innerHTML = 'test';
     popup.classList.add('popup-edit-form');
 
     let form = document.createElement('form');
@@ -41,4 +40,42 @@ function editAccount(){
     inputName.id = 'name';
     inputName.name = 'name';
 
+}
+
+function search(){
+    // declare vars
+    let input = document.getElementById('searchbar');
+    let filter = input.value.toUpperCase();
+    let divs = document.getElementsByClassName('blog-row');
+
+    // loops through all items and hides those that dont match
+    for (let i = 0; i < divs.length; i++) {
+        let h2 = divs[i].getElementsByTagName('h2')[0];
+        let textValue = h2.textContent || h2.innerText;
+        if (textValue.toUpperCase().indexOf(filter) > -1) {
+            divs[i].style.display = "";
+        }
+        else {
+            divs[i].style.display = "none";
+        }
+    }
+}
+
+function filter(){
+    // declare vars
+    let input = document.getElementById('filter-category');
+    let filter = input.value;
+    let divs = document.getElementsByClassName('blog-row');
+
+    // loops through all items and hides those that dont match
+    for (let i = 0; i < divs.length; i++) {
+        let cat = divs[i].getElementsByTagName('input')[0];
+        let textValue = cat.value;
+        if (textValue.indexOf(filter) > -1) {
+            divs[i].style.display = "";
+        }
+        else {
+            divs[i].style.display = "none";
+        }
+    }
 }

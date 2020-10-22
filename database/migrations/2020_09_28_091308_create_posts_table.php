@@ -21,6 +21,7 @@ class CreatePostsTable extends Migration
             $table->text("description");
             $table->string("image");
             $table->foreignId('category_id')->references('id')->on('categories');
+            $table->boolean('hidden')->default(0);
         });
     }
 

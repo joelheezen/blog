@@ -22,7 +22,6 @@
                 <img src="{{$blogItem['image']}}" alt="{{$blogItem['title']}}"/>
                 <p>{{$blogItem['fulltext']}}</p>
             </article>
-        @endif
 
                 <div class="comments-area">
                     @foreach($blogItem->comments as $comment)
@@ -34,6 +33,7 @@
                         </div>
                     @endforeach
                 </div>
+            @endif
 
         <div class="new-comments">
             <form method="post" action="{{route('comment.store')}}">

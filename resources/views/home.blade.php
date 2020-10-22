@@ -16,7 +16,7 @@
                     <div class="middle-text">
                         This website is meant to be a portfolio for myself, I am Joel Heezen a student CMGT(Creative Media and Game Technologies) at Hogeschool Rotterdam. <br><br>
 
-                        The purpose of this site is to show off my projects, and for people to give feedback.
+                        The purpose of this site is to show off my projects, and for people to give feedback. <a href ="{{route('posts')}}"> go here </a>
                     </div>
                 </div>
             </div>

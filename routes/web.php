@@ -27,6 +27,11 @@ Route::prefix('posts')->group(function(){
         Route::get('create', 'BlogItemController@create')->name('create');
         Route::post('store', 'BlogItemController@store')->name('store');
         Route::get('{id}', 'BlogItemController@show')->name('show');
+        Route::post('update.{id}', 'BlogitemController@update')->name('update');
+        Route::get('edit.{id}', 'BlogItemController@edit')->name('edit');
+        Route::delete('destroy.{id}', 'BlogItemController@destroy')->name('destroy');
+        Route::post('hide.{id}', 'BlogItemController@hide')->name('hide');
+        Route::post('unhide.{id}', 'BlogItemController@unhide')->name('unhide');
     });
 });
 
