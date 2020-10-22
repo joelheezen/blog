@@ -50,9 +50,11 @@ function search(){
 
     // loops through all items and hides those that dont match
     for (let i = 0; i < divs.length; i++) {
+        let p = divs[i].getElementsByTagName('p')[0];
         let h2 = divs[i].getElementsByTagName('h2')[0];
         let textValue = h2.textContent || h2.innerText;
-        if (textValue.toUpperCase().indexOf(filter) > -1) {
+        let textValue2 =  p.textContent || p.innerText;
+        if (textValue.toUpperCase().indexOf(filter) > -1 || textValue2.toUpperCase().indexOf(filter) > -1 ) {
             divs[i].style.display = "";
         }
         else {
