@@ -1,17 +1,19 @@
 @extends('layouts.master')
 
 @section('content')
-    <header class ="jumbotron">
-        <h1 class ="modal-title float-left">Posts</h1>
-        <a class ="nav-link float-right" href="{{route('posts.create')}}">Create a new post</a>
+    <header class ="header">
+        <h1 class ="headline">Posts</h1>
+        <a class ="create" href="{{route('posts.create')}}">Create a new post</a>
         <div class="search-bar">
             <p>search</p>
             <input type="text" id="searchbar" onkeyup="search()">
-            <p>filter by category</p>
-            <select id="filter-category" onClick="filter()">
+            <p class="filter">filter by category</p>
+            <select class="filter" id="filter-category" onClick="search()">
                 <option value="">all</option>
-                <option value="1">javascript</option>
-                <option value="2">html</option>
+                <option value="1">Hardware</option>
+                <option value="2">Javascript</option>
+                <option value="3">PHP</option>
+                <option value="4">Game</option>
             </select>
         </div>
         <script type="text/javascript">
@@ -26,15 +28,18 @@
                 <strong>{{$message}}</strong>
             </div>
         @endif
-        <div class="blog-row">
             @foreach($blogItems as $blogItem)
                 @if ($blogItem['hidden'] === 0 || Auth::user()->admin === 1)
+        <div class="blog-row">
                 <div class="col-sm card border-0">
                     <input type="hidden" class="invis-cat" value="{{$blogItem['category_id']}}">
                     <h2 class="card-title">{{$blogItem['title']}}</h2>
                     <p class="card-text">{{$blogItem['description']}}</p>
                     <img class="card-img" src="{{$blogItem['image']}}" alt="{{$blogItem['title']}}"/>
-                    <a class="btn btn-light" href="{{route('posts.show', $blogItem['id'])}}">read more</a>
+                    <form action="{{route('views.count')}}" method="POST">@csrf
+                        <button class="read-more" type="submit">Read more</button>
+                    <input type="hidden" name="blog-id" value="{{$blogItem->id}}">
+                    </form>
                     @if(Auth::user())
                     @if(Auth::user()->admin === 1)
                             <a class="admin-edit" href="{{route('posts.edit', $blogItem['id'])}}">edit</a>
@@ -47,19 +52,19 @@
                         @if($blogItem['hidden'] === 1)
                                 <form action="{{route('posts.unhide',  $blogItem->id)}}" method="POST">
                                     @csrf
-                                    <button type="submit">Show</button>
+                                    <button class="hidden" type="submit">Show</button>
                                 </form>
                             @else
                                 <form action="{{route('posts.hide',  $blogItem->id)}}" method="POST">
                                     @csrf
-                                    <button type="submit">Hide</button>
+                                    <button class="shown" type="submit">Hide</button>
                                 </form>
                             @endif
                     @endif
                     @endif
                     @endif
                 </div>
-            @endforeach
         </div>
+                    @endforeach
     </div>
 @endsection

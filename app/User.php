@@ -33,6 +33,10 @@ use Illuminate\Notifications\Notifiable;
  * @mixin \Eloquent
  * @property int $admin
  * @method static \Illuminate\Database\Eloquent\Builder|User whereAdmin($value)
+ * @property int $views
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Comment[] $comments
+ * @property-read int|null $comments_count
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereViews($value)
  */
 class User extends Authenticatable
 {

@@ -13,7 +13,7 @@ class BlogItemController extends Controller
      */
     public function index()
     {
-        $blogItems = \App\BlogItem::all();
+        $blogItems = \App\BlogItem::all()->sortByDesc("created_at")->sortBy("hidden");
         return view('blog-items.index', [
             'blogItems' => $blogItems
         ]);

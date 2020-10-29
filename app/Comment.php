@@ -25,6 +25,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Comment whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Comment whereUsersId($value)
  * @mixin \Eloquent
+ * @property-read \App\User $user
  */
 class Comment extends Model
 {

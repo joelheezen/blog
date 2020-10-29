@@ -14,10 +14,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 })->name('home');
 
-Route::get('about', 'AboutController@show')->name('about');
+
 Route::get('profile', 'ProfileController@index')->name('profile')->middleware('auth');
 
 Route::prefix('posts')->group(function(){
@@ -27,8 +27,8 @@ Route::prefix('posts')->group(function(){
         Route::get('create', 'BlogItemController@create')->name('create');
         Route::post('store', 'BlogItemController@store')->name('store');
         Route::get('{id}', 'BlogItemController@show')->name('show');
-        Route::post('update.{id}', 'BlogitemController@update')->name('update');
-        Route::get('edit.{id}', 'BlogItemController@edit')->name('edit');
+        Route::post('update/{id}', 'BlogItemController@update')->name('update');
+        Route::get('edit/{id}', 'BlogItemController@edit')->name('edit');
         Route::delete('destroy.{id}', 'BlogItemController@destroy')->name('destroy');
         Route::post('hide.{id}', 'BlogItemController@hide')->name('hide');
         Route::post('unhide.{id}', 'BlogItemController@unhide')->name('unhide');
@@ -36,9 +36,12 @@ Route::prefix('posts')->group(function(){
 });
 
 Route::post('comment.store', 'commentController@store')->name('comment.store')->middleware('auth');
+Route::delete('comment.destroy.{id}', 'commentController@destroy')->name('comment.destroy')->middleware('auth');
+Route::post('comment.update.{id}', 'commentController@update')->name('comment.update')->middleware('auth');
 Route::post('profile.update.{id}', 'ProfileController@update')->name('profile.update')->middleware('auth');
 Route::post('profile.store', 'ProfileController@store')->name('profile.store')->middleware('auth');
+Route::post('views.count' , 'ViewCounterController@count')->name('views.count')->middleware('auth');
+
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 

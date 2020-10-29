@@ -27,6 +27,10 @@ use Illuminate\Database\Eloquent\Model;
  * @mixin \Eloquent
  * @property int $category_id
  * @method static \Illuminate\Database\Eloquent\Builder|BlogItem whereCategoryId($value)
+ * @property int $hidden
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Comment[] $comments
+ * @property-read int|null $comments_count
+ * @method static \Illuminate\Database\Eloquent\Builder|BlogItem whereHidden($value)
  */
 class BlogItem extends Model
 {

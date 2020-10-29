@@ -81,6 +81,17 @@ class commentController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $request->validate([
+            'comment' => 'required',
+            'headline' => 'required',
+        ]);
+
+        $comment = \App\Comment::find($id);
+        $comment->comment = $request->get('comment');
+        $comment->headline = $request->get('headline');
+
+        $comment->save();
+        return redirect()->back()->with('success', 'comment has been edited!');
     }
 
     /**
@@ -92,5 +103,9 @@ class commentController extends Controller
     public function destroy($id)
     {
         //
+        $comment = \App\Comment::find($id);
+        $comment->delete();
+
+        return redirect()->back()->with('success', 'Comment has been deleted!');
     }
 }

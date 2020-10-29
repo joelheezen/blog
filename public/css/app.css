@@ -1,0 +1,120 @@
+html{
+    background-color: lightsteelblue;
+}
+
+
+body{
+    max-width: 1250px;
+    margin:auto;
+    background-color:white;
+}
+.card-header{
+    font-size:30px;
+}
+.card-text{
+    text-align:center;
+}
+
+.card-title{
+    text-align:center;
+}
+
+.card-img{
+    display:block;
+    margin: auto;
+    width:1000px;
+}
+
+
+.center-name{
+    text-align:center;
+}
+.comment-history{
+    padding-left:50px;
+    padding-bottom: 50px;
+}
+.container{
+    text-align: center;
+}
+
+.disabled-button{
+    pointer-events:none;
+    color:red;
+}
+
+footer{
+    background-color:lightsteelblue;
+    text-align:center;
+    position:sticky;
+    bottom:0;
+}
+
+
+.head{
+    position:sticky;
+    top:0;
+    background-color:lightsteelblue;
+    padding-top:5px;
+    padding-bottom:5px;
+}
+
+.header{
+    padding-left: 50px;
+}
+
+.hello{
+    text-align: center;
+}
+
+.hidden{
+    background-color:red;
+}
+
+.image{
+    max-width: 1000px;
+}
+
+.login-content{
+    padding-left:50px;
+    padding-top:10px;
+    padding-bottom:10px;
+}
+
+.nav-right {
+    float: right;
+}
+.new-comments{
+    text-align: left;
+    padding-left: 50px;
+    padding-bottom: 20px;
+}
+.popup-edit-form{
+    background-color: red;
+    width: 1150px;
+    padding-bottom: 150px;
+    padding-top:150px;
+    text-align: center;
+    top:90px;
+}
+.profile-details{
+    padding-left:50px;
+    padding-bottom:20px;
+    padding-top:15px;
+
+}
+.read-more{
+    display: block;
+    margin: auto;
+}
+
+.search-bar{
+    padding-left: 50px;
+    padding-bottom: 15px;
+    margin-right: 50px;
+    border: 3px solid purple;
+}
+
+.shown{
+    background-color: green;
+}
+
